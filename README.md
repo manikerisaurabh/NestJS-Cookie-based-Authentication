@@ -1,98 +1,186 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# NestJS Cookie-Based Authentication System
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A secure, production-ready authentication system built with NestJS featuring cookie-based JWT authentication, role-based access control, and seamless cross-subdomain support.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🚀 Features
 
-## Description
+- **🔐 Secure Cookie-Based JWT Authentication** - HTTP-only cookies for enhanced security
+- **🔄 Automatic Token Refresh** - Seamless refresh token rotation
+- **👥 Role-Based Access Control** - Multiple user roles (Admin, Manager, Employee)
+- **🌐 Cross-Subdomain Support** - Works across multiple subdomains
+- **🔒 Enhanced Security** - BCrypt password hashing, token versioning, and secure cookie policies
+- **📊 Prisma ORM Integration** - Type-safe database operations
+- **🧪 Swagger Testing Ready** - Complete testing suite included
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🛠 Technology Stack
 
-## Project setup
+- **Framework**: NestJS
+- **Database**: PostgreSQL with Prisma ORM
+- **Authentication**: JWT with cookie storage
+- **Password Hashing**: BCrypt
+- **Validation**: Class Validator
+- **Testing**: Swagger
 
-```bash
-$ pnpm install
-```
+## 📋 Prerequisites
 
-## Compile and run the project
+Before running this application, ensure you have:
 
-```bash
-# development
-$ pnpm run start
+- Node.js (v16 or higher)
+- PostgreSQL database
+- pnpm
+- Postman (for API testing)
 
-# watch mode
-$ pnpm run start:dev
+## 🚦 Installation & Setup
 
-# production mode
-$ pnpm run start:prod
-```
-
-## Run tests
+### 1. Clone the Repository
 
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+git clone https://github.com/manikerisaurabh/NestJS-Cookie-based-Authentication
+cd NestJS-Cookie-based-Authentication
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 2. Install Dependencies
 
 ```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+pnpm install
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 3. Database Setup
 
-## Resources
+Create a PostgreSQL database and update your `.env` file:
 
-Check out a few resources that may come in handy when working with NestJS:
+```bash
+# Update the DATABASE_URL in your .env file
+DATABASE_URL="postgresql://postgres:<your_password>@localhost:5432/nestjs_cookie_auth"
+NODE_ENV="development"
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### 4. Run Database Migrations
 
-## Support
+```bash
+npx prisma generate
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+pnpx prisma db push
+```
 
-## Stay in touch
+### 5. Environment Configuration
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Create a `.env` file in the root directory:
 
-## License
+```env
+# JWT Configuration
+JWT_SECRET=your-super-secure-jwt-secret-key-here
+JWT_REFRESH_SECRET=your-super-secure-refresh-secret-key-here
+ACCESS_TOKEN_EXPIRES_IN=15m
+REFRESH_TOKEN_EXPIRES_IN=7d
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+# Database
+DATABASE_URL="postgresql://username:password@localhost:5432/your_database_name"
+
+# Application
+NODE_ENV=development
+PORT=3000
+```
+
+### 6. Start the Application
+
+```bash
+# Development
+npm run start:dev
+
+# Production
+npm run build
+npm run start:prod
+```
+
+## 📖 API Endpoints
+
+### Authentication Endpoints
+
+| Method | Endpoint         | Description                  |
+| ------ | ---------------- | ---------------------------- |
+| POST   | `/auth/register` | Register a new user          |
+| POST   | `/auth/login`    | User login                   |
+| POST   | `/auth/refresh`  | Refresh access token         |
+| POST   | `/auth/logout`   | User logout                  |
+| GET    | `/auth/profile`  | Get user profile (protected) |
+
+### User Registration Example
+
+```json
+// POST /auth/register
+{
+  "email": "user@example.com",
+  "password": "securePassword123",
+  "role": "EMPLOYEE",
+  "first_name": "John",
+  "last_name": "Doe",
+  "hospitalId": "optional-hospital-uuid"
+}
+```
+
+### User Login Example
+
+```json
+// POST /auth/login
+{
+  "email": "user@example.com",
+  "password": "securePassword123"
+}
+```
+
+## 🎯 Advantages of Cookie-Based Authentication
+
+### Enhanced Security
+
+- **HTTP-only cookies** prevent XSS attacks
+- **Secure flag** ensures cookies are only sent over HTTPS
+- **SameSite policy** protects against CSRF attacks
+- **Automatic token refresh** with secure rotation
+
+### Better User Experience
+
+- **Silent authentication** without manual token management
+- **Automatic token inclusion** in all requests
+- **Cross-subdomain support** for microservices architecture
+
+### Production Ready
+
+- **Token expiration handling** with refresh mechanism
+- **Role-based access control** for authorization
+- **Scalable architecture** suitable for large applications
+- **Comprehensive error handling** for all edge cases
+
+## 🔒 Security Considerations
+
+1. **Always use HTTPS** in production environments
+2. **Rotate JWT secrets** regularly in production
+3. **Implement rate limiting** on authentication endpoints
+4. **Use strong password policies** for user registration
+5. **Regularly update dependencies** to patch security vulnerabilities
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 🆘 Support
+
+If you encounter any issues or have questions:
+
+1. Check the [Prisma documentation](https://www.prisma.io/docs/)
+2. Review the [NestJS authentication guide](https://docs.nestjs.com/security/authentication)
+3. Create an issue in the GitHub repository
+
+## 🙏 Acknowledgments
+
+- [NestJS Team](https://nestjs.com/) for the amazing framework
+- [Prisma Team](https://www.prisma.io/) for the excellent ORM
+- All contributors who help improve this project
+
+---
+
+**Note**: This is a template implementation. Always conduct security audits and customize the authentication system according to your specific requirements before deploying to production.
